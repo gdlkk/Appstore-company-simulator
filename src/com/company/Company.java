@@ -36,24 +36,49 @@ public class Company {
 
     public void hireEmployee(int employeeChoice) {
         if (employeeChoice == 1) {
-            avaliableEmployees.remove(Employee.coder1);
-            hiredEmployees.add(Employee.coder1);
+            if (Employee.coder1.isHired == true) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.remove(Employee.coder1);
+                hiredEmployees.add(Employee.coder1);
+                Employee.coder1.isHired = true;
+            }
         } else if (employeeChoice == 2) {
-            avaliableEmployees.remove(Employee.coder2);
-            avaliableEmployees.add(Employee.coder2);
+            if (Employee.coder2.isHired == true) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.remove(Employee.coder2);
+                hiredEmployees.add(Employee.coder2);
+                Employee.coder2.isHired = true;
+            }
         } else if (employeeChoice == 3) {
-            avaliableEmployees.remove(Employee.coder3);
-            avaliableEmployees.add(Employee.coder3);
+            if (Employee.coder3.isHired == true) {
+                System.out.println("Wrong input!");
+            } else {
+                Employee.coder3.isHired = true;
+                avaliableEmployees.remove(Employee.coder3);
+                hiredEmployees.add(Employee.coder3);
+            }
         } else if (employeeChoice == 4) {
-            avaliableEmployees.remove(Employee.coder4);
-            avaliableEmployees.add(Employee.coder4);
+            if (Employee.coder4.isHired == true) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.remove(Employee.coder4);
+                hiredEmployees.add(Employee.coder4);
+                Employee.coder4.isHired = true;
+            }
         } else if (employeeChoice == 5) {
-            avaliableEmployees.remove(Employee.coder5);
-            avaliableEmployees.add(Employee.coder5);
+            if (Employee.coder5.isHired == true) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.remove(Employee.coder5);
+                hiredEmployees.add(Employee.coder5);
+                Employee.coder5.isHired = true;
+            }
         } else if (employeeChoice == 0) {
         }
         else {
-            System.out.println("Wrong input");
+            System.out.println("Wrong input!");
         }
     }
 
@@ -67,24 +92,49 @@ public class Company {
 
     public void fireEmployee(int employeeChoice) {
         if (employeeChoice == 1) {
-            avaliableEmployees.add(Employee.coder1);
-            hiredEmployees.remove(Employee.coder1);
+            if (Employee.coder1.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.coder1);
+                hiredEmployees.remove(Employee.coder1);
+                Employee.coder1.isHired = false;
+            }
         } else if (employeeChoice == 2) {
-            avaliableEmployees.add(Employee.coder2);
-            avaliableEmployees.remove(Employee.coder2);
+            if (Employee.coder2.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.coder2);
+                avaliableEmployees.remove(Employee.coder2);
+                Employee.coder2.isHired = false;
+            }
         } else if (employeeChoice == 3) {
-            avaliableEmployees.add(Employee.coder3);
-            avaliableEmployees.remove(Employee.coder3);
+            if (Employee.coder3.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.coder3);
+                avaliableEmployees.remove(Employee.coder3);
+                Employee.coder3.isHired = false;
+            }
         } else if (employeeChoice == 4) {
-            avaliableEmployees.add(Employee.coder4);
-            avaliableEmployees.remove(Employee.coder4);
+            if (Employee.coder4.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.coder4);
+                avaliableEmployees.remove(Employee.coder4);
+                Employee.coder4.isHired = false;
+            }
         } else if (employeeChoice == 5) {
-            avaliableEmployees.add(Employee.coder5);
-            avaliableEmployees.remove(Employee.coder5);
+            if (Employee.coder5.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.coder5);
+                avaliableEmployees.remove(Employee.coder5);
+                Employee.coder5.isHired = false;
+            }
         } else if (employeeChoice == 0) {
         }
         else {
-            System.out.println("Wrong input, try again");
+            System.out.println("Wrong input!");
 
         }
     }
@@ -102,4 +152,6 @@ public class Company {
         }
         System.out.println("If you want go back press 0");
     }
+
+
 }
