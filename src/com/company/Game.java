@@ -1,25 +1,27 @@
 package com.company;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Game {
     public Scanner sc;
     public Boolean isGameOver;
     public Company company;
-    public Integer turn;
+    public Calendar startOfGame;
 
     public Game() {
         this.sc = new Scanner(System.in);
         this.isGameOver = false;
         this.company = new Company();
-        this.turn = 0;
+        this.startOfGame = new GregorianCalendar(2020,0,1);
     }
 
     public void startGame() {
         company.addAvaliableEmployees();
-         company.addAvaliableSubcontractors();
+        company.addAvaliableSubcontractors();
       do {
-            System.out.println("Number of turns: " + turn);
+            System.out.println("Current date: " + startOfGame.getTime());
             System.out.println("What you want to do? Select from actions above: ");
             showMenu();
             int yourChoice = Integer.parseInt(sc.nextLine());
@@ -56,7 +58,7 @@ public class Game {
                 System.out.println("Which employee you want to hire?: ");
                 int employeeChoice = Integer.parseInt(sc.nextLine());
                 company.hireEmployee(employeeChoice);
-                turn++;
+                nextTurn();
             }
             break;
             case 7:{
@@ -64,7 +66,7 @@ public class Game {
                 System.out.println("Which employee you want to fire?");
                 int fireChoice = Integer.parseInt(sc.nextLine());
                 company.fireEmployee(fireChoice);
-                turn ++;
+                nextTurn();
             }
             break;
             case 8:
@@ -74,6 +76,9 @@ public class Game {
             }
             break;
         }
+    }
+    public void nextTurn() {
+        startOfGame.add(Calendar.DAY_OF_MONTH, 1);
     }
 }
 
