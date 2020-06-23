@@ -1,9 +1,9 @@
 package com.company;
 
 public enum Subcontractor {
-    bestStudent("SpongeBob", "SquarePants",  5000.0, randomBoolean(),randomBoolean(),randomBoolean(),randomBoolean(),randomBoolean(),randomBoolean(),0.0,0.0),
-    avgStudent("Winnie", "the-Pooh", 3000.0, randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(),randomBoolean(),0.10,0.0),
-    worstStudent("Donkey", "Kong", 2500.0, randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean() ,randomBoolean(), 0.20,0.20);
+    bestStudent("1. SpongeBob", "SquarePants",  5000.0, randomBoolean(),randomBoolean(),randomBoolean(),randomBoolean(),randomBoolean(),randomBoolean(),0.0,0.0, false),
+    avgStudent("2. Winnie", "the-Pooh", 3000.0, randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(),randomBoolean(),0.10,0.0, false),
+    worstStudent("3. Donkey", "Kong", 2500.0, randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean() ,randomBoolean(), 0.20,0.20, false);
 
     public String firstName;
     public Double subcontractorCost;
@@ -16,6 +16,7 @@ public enum Subcontractor {
     public Boolean prestashop;
     public Double buggedCodeChance;
     public Double delayChance;
+    public Boolean isWorking;
     public static boolean randomBoolean() {
         return Math.random() < 0.5;
     }
@@ -64,7 +65,7 @@ public enum Subcontractor {
         return delayChance;
     }
 
-    Subcontractor(String firstName, String lastName, Double subcontractorCost, Boolean frontEnd, Boolean backEnd, Boolean dataBase, Boolean mobile, Boolean wordpress, Boolean prestashop, Double buggedCodeChance, Double delayChance) {
+    Subcontractor(String firstName, String lastName, Double subcontractorCost, Boolean frontEnd, Boolean backEnd, Boolean dataBase, Boolean mobile, Boolean wordpress, Boolean prestashop, Double buggedCodeChance, Double delayChance, Boolean isWorking) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.subcontractorCost = subcontractorCost;
@@ -76,6 +77,7 @@ public enum Subcontractor {
         this.prestashop = prestashop;
         this.buggedCodeChance = buggedCodeChance;
         this.delayChance = delayChance;
+        this.isWorking = isWorking;
     }
 
 }

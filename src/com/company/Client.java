@@ -1,6 +1,10 @@
 package com.company;
 
-public class Client {
+public enum Client {
+    ClientEasy("Krzysztof Ibisz Code", 0.30,0.0,0.20,100.0,0.0),
+    ClientNorm("Ricky LaFleur", 0.0,0.0,0.0, 0.0,0.50),
+    ClientScmbg("Jim Lahey [*]", 0.30,0.05,0.0,0.0,0.0);
+
     public String clientName;
     public Double paymentDelayChance7d;
     public Double paymentDelayChance1m;
@@ -32,19 +36,7 @@ public class Client {
         return loseProjectChance;
     }
 
-    public Client getChillClient() {
-        return chillClient;
-    }
-
-    public Client getDemanding() {
-        return demanding;
-    }
-
-    public Client getScmbg() {
-        return scmbg;
-    }
-
-    public Client(String clientName, Double paymentDelayChance7d, Double paymentDelayChance1m , Double dodgePenaltyChance7d, Double dodgePenaltyChance1m, Double loseProjectChance) {
+    Client(String clientName, Double paymentDelayChance7d, Double paymentDelayChance1m , Double dodgePenaltyChance7d, Double dodgePenaltyChance1m, Double loseProjectChance) {
         this.clientName = clientName;
         this.paymentDelayChance7d = paymentDelayChance7d;
         this.paymentDelayChance1m = paymentDelayChance1m;
@@ -52,10 +44,4 @@ public class Client {
         this.dodgePenaltyChance1m = dodgePenaltyChance1m;
         this.loseProjectChance = loseProjectChance;
     }
-
-    Client chillClient = new Client("Krzysztof Ibisz Code", 0.30,0.0,0.20,100.0,0.0);
-    Client demanding = new Client("Ricky LaFleur", 0.0,0.0,0.0, 0.0,0.50);
-    Client scmbg = new Client("Jim Lahey [*]", 0.30,0.05,0.0,0.0,0.0);
-
-
 }

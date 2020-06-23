@@ -14,14 +14,18 @@ public class Game {
         this.sc = new Scanner(System.in);
         this.isGameOver = false;
         this.company = new Company();
-        this.startOfGame = new GregorianCalendar(2020,0,1);
+        this.startOfGame = new GregorianCalendar(2020,0,1,9,0,0);
     }
 
     public void startGame() {
         company.addAvaliableEmployees();
         company.addAvaliableSubcontractors();
+        company.addAvaliableProjects();
+        company.addAvaliableOffice();
       do {
-            System.out.println("Current date: " + startOfGame.getTime());
+            payoutTime();
+            System.out.println("Current date: " + startOfGame.getTime()
+                    + "\nYour funds: " + company.money + "$");
             System.out.println("What you want to do? Select from actions above: ");
             showMenu();
             int yourChoice = Integer.parseInt(sc.nextLine());
@@ -38,20 +42,37 @@ public class Game {
                 + "\n6 - Hire an employee"
                 + "\n7 - Fire an employee"
                 + "\n8 - Give your hard earned money to ZUS and GUS"
-                + "\n9 - Get a subcontractor");
+                + "\n9 - Get a subcontractor"
+                + "\n10 - Lets rent an office");
     }
 
     public void makeChoice(int yourChoice) {
         switch(yourChoice) {
             case 1:
+                company.showAvaliableProjects();
+                System.out.println("Which project you want to start?");
+                int projectChoice = Integer.parseInt(sc.nextLine());
+                company.startProject(projectChoice);
+                nextTurn();
             break;
             case 2:
             break;
             case 3:
+                System.out.println("Which project you want to code?");
+                company.showStartedProject();
+                System.out.println("If you want go back press 0");
+                int whichStart = Integer.parseInt(sc.nextLine());
+                company.letsCode(whichStart);
+                nextTurn();
             break;
             case 4:
             break;
             case 5:
+                company.showEndedProjects();
+                System.out.println("Whihch project you want to hand over?");
+                int whichEnd = Integer.parseInt(sc.nextLine());
+                company.endProject(whichEnd);
+                nextTurn();
             break;
             case 6: {
                 company.showAvaliableEmployees();
@@ -73,12 +94,31 @@ public class Game {
             break;
             case 9: {
                 company.showAvaliableSubcontractors();
+                System.out.println("Which subcontractor you want to hire?");
+                int subcontractorChoice = Integer.parseInt(sc.nextLine());
+                company.hireSubcontractor(subcontractorChoice);
+                nextTurn();
+            }
+            break;
+            case 10: {
+                company.showAvaliableOffices();
+                System.out.println("Which office you want to rent?");
+                int whichOffice = Integer.parseInt(sc.nextLine());
+                company.rentOffice(whichOffice);
+                nextTurn();
             }
             break;
         }
     }
     public void nextTurn() {
         startOfGame.add(Calendar.DAY_OF_MONTH, 1);
+    }
+    public void payoutTime() {
+        if (startOfGame.get(Calendar.DAY_OF_MONTH) == 10) {
+            company.businessExpenseSum();
+            company.money -= company.businessExpense;
+            company.businessExpense = 0.0;
+        }
     }
 }
 
