@@ -1,10 +1,13 @@
 package com.company;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public enum Project {
-    project1("1. easy", 0, 0, 0,0,4,0,10000.0, Client.ClientEasy),
-    project2("2. medium", 4,5,0,0,0,0, 35000.0, Client.ClientScmbg),
-    project3("3. hard", 13,18,11,0,0,0, 55000.0, Client.ClientNorm);
+    project1("1. easy", 0, 0, 0,0,4,0,10000.0, Client.ClientEasy, new ArrayList<>()),
+    project2("2. medium", 4,5,0,0,0,0, 35000.0, Client.ClientScmbg, new ArrayList<>()),
+    project3("3. hard", 13,18,11,0,0,0, 55000.0, Client.ClientNorm, new ArrayList<>());
 
     public String difficulty;
     public Integer frontEndDays;
@@ -15,6 +18,7 @@ public enum Project {
     public Integer prestashopDays;
     public Double  projectPrice;
     public Client client;
+    public ArrayList<Employee> thisProjectWorkers;
 
     public String getDifficulty() {
         return difficulty;
@@ -52,7 +56,7 @@ public enum Project {
         return client;
     }
 
-    Project(String difficulty, Integer frontEndDays, Integer backEndDays, Integer dataBaseDays, Integer mobileDays, Integer wordpressDays, Integer prestashopDays, Double projectPrice, Client client) {
+    Project(String difficulty, Integer frontEndDays, Integer backEndDays, Integer dataBaseDays, Integer mobileDays, Integer wordpressDays, Integer prestashopDays, Double projectPrice, Client client, ArrayList<Employee> thisProjectWorkers) {
         this.difficulty = difficulty;
         this.frontEndDays = frontEndDays;
         this.backEndDays = backEndDays;
@@ -62,5 +66,6 @@ public enum Project {
         this.prestashopDays = prestashopDays;
         this.projectPrice = projectPrice;
         this.client = client;
+        this.thisProjectWorkers = thisProjectWorkers;
     }
 }

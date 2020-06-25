@@ -23,6 +23,7 @@ public class Game {
         company.addAvaliableProjects();
         company.addAvaliableOffice();
       do {
+            company.workingTime();
             payoutTime();
             System.out.println("Current date: " + startOfGame.getTime()
                     + "\nYour funds: " + company.money + "$");
@@ -43,7 +44,9 @@ public class Game {
                 + "\n7 - Fire an employee"
                 + "\n8 - Give your hard earned money to ZUS and GUS"
                 + "\n9 - Get a subcontractor"
-                + "\n10 - Lets rent an office");
+                + "\n10 - Lets rent an office"
+                + "\n11 - Add employees to project"
+                + "\n12 - Check your project progress");
     }
 
     public void makeChoice(int yourChoice) {
@@ -53,7 +56,9 @@ public class Game {
                 System.out.println("Which project you want to start?");
                 int projectChoice = Integer.parseInt(sc.nextLine());
                 company.startProject(projectChoice);
-                nextTurn();
+                if (projectChoice == 0) { } else {
+                    nextTurn();
+                }
             break;
             case 2:
             break;
@@ -63,7 +68,9 @@ public class Game {
                 System.out.println("If you want go back press 0");
                 int whichStart = Integer.parseInt(sc.nextLine());
                 company.letsCode(whichStart);
-                nextTurn();
+                if (whichStart == 0) { } else {
+                    nextTurn();
+                }
             break;
             case 4:
             break;
@@ -72,14 +79,18 @@ public class Game {
                 System.out.println("Whihch project you want to hand over?");
                 int whichEnd = Integer.parseInt(sc.nextLine());
                 company.endProject(whichEnd);
-                nextTurn();
+                if (whichEnd == 0) {} else {
+                    nextTurn();
+                }
             break;
             case 6: {
                 company.showAvaliableEmployees();
                 System.out.println("Which employee you want to hire?: ");
                 int employeeChoice = Integer.parseInt(sc.nextLine());
                 company.hireEmployee(employeeChoice);
-                nextTurn();
+                if (employeeChoice == 0) { } else {
+                    nextTurn();
+                }
             }
             break;
             case 7:{
@@ -87,7 +98,9 @@ public class Game {
                 System.out.println("Which employee you want to fire?");
                 int fireChoice = Integer.parseInt(sc.nextLine());
                 company.fireEmployee(fireChoice);
-                nextTurn();
+                if (fireChoice == 0) { } else {
+                    nextTurn();
+                }
             }
             break;
             case 8:
@@ -97,7 +110,9 @@ public class Game {
                 System.out.println("Which subcontractor you want to hire?");
                 int subcontractorChoice = Integer.parseInt(sc.nextLine());
                 company.hireSubcontractor(subcontractorChoice);
-                nextTurn();
+                if (subcontractorChoice == 0) { } else {
+                 nextTurn();
+                }
             }
             break;
             case 10: {
@@ -105,7 +120,22 @@ public class Game {
                 System.out.println("Which office you want to rent?");
                 int whichOffice = Integer.parseInt(sc.nextLine());
                 company.rentOffice(whichOffice);
-                nextTurn();
+                if (whichOffice == 0) { } else {
+                    nextTurn();
+                }
+            }
+            break;
+            case 11: {
+                System.out.println("Which project do you want to add an employee to?");
+                company.showStartedProject();
+                projectChoice = Integer.parseInt(sc.nextLine());
+                company.addWorkersToProject(projectChoice);
+                if (projectChoice == 0) { } else {
+                    nextTurn();
+                }
+            }
+            case 12: {
+                company.showStartedProject();
             }
             break;
         }

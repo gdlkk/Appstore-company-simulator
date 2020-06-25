@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Company {
     public Integer numberOfEmployees = 0;
@@ -16,6 +17,7 @@ public class Company {
     public ArrayList<Project> endedProjects = new ArrayList<>();
     public ArrayList<Office> avaliableOffice = new ArrayList<>();
     public Office yourOffice = null;
+    public Scanner sc = new Scanner(System.in);
 
     public void addAvaliableOffice() {
         avaliableOffice.add(Office.officeSmall);
@@ -118,6 +120,7 @@ public class Company {
                 hiredEmployees.remove(Employee.coder1);
                 Employee.coder1.isHired = false;
                 numberOfEmployees -= 1;
+                money -= 2000.0;
             }
         } else if (employeeChoice == 2) {
             if (Employee.coder2.isHired == false) {
@@ -127,6 +130,7 @@ public class Company {
                 avaliableEmployees.remove(Employee.coder2);
                 Employee.coder2.isHired = false;
                 numberOfEmployees -= 1;
+                money -= 2000.0;
             }
         } else if (employeeChoice == 3) {
             if (Employee.coder3.isHired == false) {
@@ -136,6 +140,7 @@ public class Company {
                 avaliableEmployees.remove(Employee.coder3);
                 Employee.coder3.isHired = false;
                 numberOfEmployees -= 1;
+                money -= 2000.0;
             }
         } else if (employeeChoice == 4) {
             if (Employee.coder4.isHired == false) {
@@ -145,6 +150,7 @@ public class Company {
                 avaliableEmployees.remove(Employee.coder4);
                 Employee.coder4.isHired = false;
                 numberOfEmployees -= 1;
+                money -= 2000.0;
             }
         } else if (employeeChoice == 5) {
             if (Employee.coder5.isHired == false) {
@@ -154,6 +160,7 @@ public class Company {
                 avaliableEmployees.remove(Employee.coder5);
                 Employee.coder5.isHired = false;
                 numberOfEmployees -= 1;
+                money -= 2000.0;
             }
         } else if (employeeChoice == 0) {
         }
@@ -257,7 +264,7 @@ public class Company {
                     }
                 }
             }
-            if (Project.project1.frontEndDays == 0 & Project.project1.backEndDays == 0 & Project.project1.dataBaseDays == 0 & Project.project1.mobileDays == 0 & Project.project1.wordpressDays == 0 & Project.project1.prestashopDays == 0) {
+            if (Project.project1.frontEndDays <= 0 & Project.project1.backEndDays <= 0 & Project.project1.dataBaseDays <= 0 & Project.project1.mobileDays <= 0 & Project.project1.wordpressDays <= 0 & Project.project1.prestashopDays == 0) {
                 System.out.println("This project is ended!");
                 startedProjects.remove(Project.project1);
                 endedProjects.add(Project.project1);
@@ -286,7 +293,7 @@ public class Company {
                     }
                 }
             }
-            if (Project.project2.frontEndDays == 0 & Project.project2.backEndDays == 0 & Project.project2.dataBaseDays == 0 & Project.project2.mobileDays == 0 & Project.project2.wordpressDays == 0 & Project.project2.prestashopDays == 0) {
+            if (Project.project2.frontEndDays <= 0 & Project.project2.backEndDays <= 0 & Project.project2.dataBaseDays <= 0 & Project.project2.mobileDays <= 0 & Project.project2.wordpressDays <= 0 & Project.project2.prestashopDays == 0) {
                 System.out.println("This project is ended!");
                 startedProjects.remove(Project.project2);
                 endedProjects.add(Project.project2);
@@ -315,7 +322,7 @@ public class Company {
                     }
                 }
             }
-            if (Project.project3.frontEndDays == 0 & Project.project3.backEndDays == 0 & Project.project3.dataBaseDays == 0 & Project.project3.mobileDays == 0 & Project.project3.wordpressDays == 0 & Project.project3.prestashopDays == 0) {
+            if (Project.project3.frontEndDays <= 0 & Project.project3.backEndDays <= 0 & Project.project3.dataBaseDays == 0 & Project.project3.mobileDays <= 0 & Project.project3.wordpressDays <= 0 & Project.project3.prestashopDays <= 0) {
                 System.out.println("This project is ended!");
                 startedProjects.remove(Project.project3);
                 endedProjects.add(Project.project3);
@@ -388,6 +395,110 @@ public class Company {
 
         } else {
             System.out.println("Wrong input!");
+        }
+    }
+
+    public boolean isBusy(Employee employee) {
+        for (Project project : startedProjects)
+        if (project.thisProjectWorkers.contains(employee)) {
+            return true;
+        }
+            return false;
+        }
+
+    public void addWorkersToProject(int projectChoice) {
+        if (projectChoice == 1) {
+            System.out.println("Which employee you want to add to project?");
+            showHiredEmployees();
+            Integer employeeChoice = Integer.parseInt(sc.nextLine());
+            if (employeeChoice == 1 & isBusy(Employee.coder1) == false & Employee.coder1.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder1);
+            } else if (employeeChoice == 2 & isBusy(Employee.coder2) == false & Employee.coder2.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder2);
+            } else if (employeeChoice == 3 & isBusy(Employee.coder3) == false & Employee.coder3.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder3);
+            } else if (employeeChoice == 4 & isBusy(Employee.coder4) == false & Employee.coder4.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder4);
+            } else if (employeeChoice == 5 & isBusy(Employee.coder5) == false & Employee.coder5.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder5);
+            } else if (employeeChoice == 0) {
+
+            } else {
+                System.out.println("Wrong input or employee is busy!");
+            }
+        } else if (projectChoice == 2) {
+            System.out.println("Which employee you want to add to project?");
+            showHiredEmployees();
+            Integer employeeChoice = Integer.parseInt(sc.nextLine());
+            if (employeeChoice == 1 & isBusy(Employee.coder1) == false & Employee.coder1.isHired == true) {
+                Project.project2.thisProjectWorkers.add(Employee.coder1);
+            } else if (employeeChoice == 2 & isBusy(Employee.coder2) == false & Employee.coder2.isHired == true) {
+                Project.project2.thisProjectWorkers.add(Employee.coder2);
+            } else if (employeeChoice == 3 & isBusy(Employee.coder3) == false & Employee.coder3.isHired == true) {
+                Project.project2.thisProjectWorkers.add(Employee.coder3);
+            } else if (employeeChoice == 4 & isBusy(Employee.coder4) == false & Employee.coder4.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder4);
+            } else if (employeeChoice == 5 & isBusy(Employee.coder5) == false & Employee.coder5.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder5);
+            } else if (employeeChoice == 0) {
+
+            } else {
+                System.out.println("Wrong input or employee is busy!");
+            }
+        } else if (projectChoice == 3) {
+            System.out.println("Which employee you want to add to project?");
+            showHiredEmployees();
+            Integer employeeChoice = Integer.parseInt(sc.nextLine());
+            if (employeeChoice == 1 & isBusy(Employee.coder1) == false & Employee.coder1.isHired == true) {
+                Project.project3.thisProjectWorkers.add(Employee.coder1);
+            } else if (employeeChoice == 2 & isBusy(Employee.coder2) == false & Employee.coder2.isHired == true) {
+                Project.project3.thisProjectWorkers.add(Employee.coder2);
+            } else if (employeeChoice == 3 & isBusy(Employee.coder3) == false & Employee.coder3.isHired == true) {
+                Project.project3.thisProjectWorkers.add(Employee.coder3);
+            } else if (employeeChoice == 4 & isBusy(Employee.coder4) == false & Employee.coder4.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder4);
+            } else if (employeeChoice == 5 & isBusy(Employee.coder5) == false & Employee.coder5.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.coder5);
+            } else if (employeeChoice == 0) {
+
+            } else {
+                System.out.println("Wrong input or employee is busy!");
+            }
+        }
+    }
+
+    public void workingTime() {
+        for (Project project : startedProjects) {
+            for (Employee employee : project.thisProjectWorkers) {
+                if (employee.frontEnd == true & project.frontEndDays > 0) {
+                    project.frontEndDays--;
+                } else {
+                    if (employee.backEnd == true & project.backEndDays > 0) {
+                        project.backEndDays--;
+                    } else {
+                        if (employee.dataBase == true & project.dataBaseDays > 0) {
+                            project.dataBaseDays--;
+                        } else {
+                            if (employee.mobile == true & project.mobileDays > 0) {
+                                project.mobileDays--;
+                            } else {
+                                if (employee.wordpress == true & project.wordpressDays > 0) {
+                                    project.wordpressDays--;
+                                } else {
+                                    if (employee.prestashop == true & project.prestashopDays > 0) {
+                                        project.prestashopDays--;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (project.frontEndDays <= 0 & project.backEndDays <= 0 & project.dataBaseDays <= 0 & project.mobileDays <= 0 & project.wordpressDays <= 0 & project.prestashopDays <= 0) {
+                System.out.println("This project is ended!");
+                startedProjects.remove(project);
+                endedProjects.add(project);
+            }
         }
     }
 }
