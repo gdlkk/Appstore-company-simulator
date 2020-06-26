@@ -5,46 +5,49 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public enum Project {
-    project1("1. easy", 0, 0, 0,0,4,0,10000.0, Client.ClientEasy, new ArrayList<>()),
-    project2("2. medium", 4,5,0,0,0,0, 35000.0, Client.ClientScmbg, new ArrayList<>()),
-    project3("3. hard", 13,18,11,0,0,0, 55000.0, Client.ClientNorm, new ArrayList<>());
+    project1("1. easy", 0.0, 0.0, 0.0,0.0,4.0,0.0,10000.0, Client.ClientEasy, new ArrayList<>(), new ArrayList<>(), 0,0,0),
+    project2("2. medium", 4.0,5.0,0.0,0.0,0.0,0.0, 35000.0, Client.ClientScmbg, new ArrayList<>(), new ArrayList<>(),0,0,0),
+    project3("3. hard", 13.0,18.0,11.0,0.0,0.0,0.0, 55000.0, Client.ClientNorm, new ArrayList<>(), new ArrayList<>(),0,0,0);
 
     public String difficulty;
-    public Integer frontEndDays;
-    public Integer backEndDays;
-    public Integer dataBaseDays;
-    public Integer mobileDays;
-    public Integer wordpressDays;
-    public Integer prestashopDays;
+    public Double frontEndDays;
+    public Double backEndDays;
+    public Double dataBaseDays;
+    public Double mobileDays;
+    public Double wordpressDays;
+    public Double prestashopDays;
     public Double  projectPrice;
     public Client client;
     public ArrayList<Employee> thisProjectWorkers;
-
+    public ArrayList<Subcontractor> thisProjectSubcontractors;
+    public Integer bugs;
+    public Integer numberOfTesters;
+    public Integer numberOfCoders;
     public String getDifficulty() {
         return difficulty;
     }
 
-    public Integer getFrontEndDays() {
+    public Double getFrontEndDays() {
         return frontEndDays;
     }
 
-    public Integer getBackEndDays() {
+    public Double getBackEndDays() {
         return backEndDays;
     }
 
-    public Integer getDataBaseDays() {
+    public Double getDataBaseDays() {
         return dataBaseDays;
     }
 
-    public Integer getMobileDays() {
+    public Double getMobileDays() {
         return mobileDays;
     }
 
-    public Integer getWordpressDays() {
+    public Double getWordpressDays() {
         return wordpressDays;
     }
 
-    public Integer getPrestashopDays() {
+    public Double getPrestashopDays() {
         return prestashopDays;
     }
 
@@ -56,7 +59,7 @@ public enum Project {
         return client;
     }
 
-    Project(String difficulty, Integer frontEndDays, Integer backEndDays, Integer dataBaseDays, Integer mobileDays, Integer wordpressDays, Integer prestashopDays, Double projectPrice, Client client, ArrayList<Employee> thisProjectWorkers) {
+    Project(String difficulty, Double frontEndDays, Double backEndDays, Double dataBaseDays, Double mobileDays, Double wordpressDays, Double prestashopDays, Double projectPrice, Client client, ArrayList<Employee> thisProjectWorkers, ArrayList<Subcontractor> thisProjectSubcontractors, Integer bugs, Integer numberOfTesters, Integer numberOfCoders) {
         this.difficulty = difficulty;
         this.frontEndDays = frontEndDays;
         this.backEndDays = backEndDays;
@@ -67,5 +70,9 @@ public enum Project {
         this.projectPrice = projectPrice;
         this.client = client;
         this.thisProjectWorkers = thisProjectWorkers;
+        this.thisProjectSubcontractors = thisProjectSubcontractors;
+        this.bugs = bugs;
+        this.numberOfTesters = numberOfTesters;
+        this.numberOfCoders = numberOfCoders;
     }
 }

@@ -23,7 +23,9 @@ public class Game {
         company.addAvaliableProjects();
         company.addAvaliableOffice();
       do {
-            company.workingTime();
+          if (startOfGame.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || startOfGame.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) { } else {
+              company.workingTime();
+          }
             payoutTime();
             System.out.println("Current date: " + startOfGame.getTime()
                     + "\nYour funds: " + company.money + "$");
@@ -31,6 +33,10 @@ public class Game {
             showMenu();
             int yourChoice = Integer.parseInt(sc.nextLine());
             makeChoice(yourChoice);
+          if (company.money < 0) {
+              System.out.println("You lose!");
+              isGameOver = true;
+          }
         } while(!isGameOver);
     }
 
@@ -73,13 +79,19 @@ public class Game {
                 }
             break;
             case 4:
+                System.out.println("In which project you want to repair bugs?");
+                Integer whichProject = Integer.parseInt(sc.nextLine());
+                company.repairBugs(whichProject);
+                if (whichProject == 0) { } else {
+                    nextTurn();
+                }
             break;
             case 5:
                 company.showEndedProjects();
-                System.out.println("Whihch project you want to hand over?");
+                System.out.println("Which project you want to hand over?");
                 int whichEnd = Integer.parseInt(sc.nextLine());
                 company.endProject(whichEnd);
-                if (whichEnd == 0) {} else {
+                if (whichEnd == 0) { } else {
                     nextTurn();
                 }
             break;

@@ -32,7 +32,6 @@ public class Company {
         avaliableEmployees.add(Employee.coder4);
         avaliableEmployees.add(Employee.coder5);
     }
-
     public void addAvaliableProjects() {
         avaliableProjects.add(Project.project1);
         avaliableProjects.add(Project.project2);
@@ -96,8 +95,25 @@ public class Company {
                     Employee.coder5.isHired = true;
                     numberOfEmployees += 1;
                 }
-            } else if (employeeChoice == 0) {
-            } else {
+            } else if (employeeChoice == 6 & numberOfEmployees < yourOffice.officeCapacity) {
+                if (Employee.tester1.isHired == true) {
+                    System.out.println("Wrong input!");
+                } else {
+                    avaliableEmployees.remove(Employee.tester1);
+                    hiredEmployees.add(Employee.tester1);
+                    Employee.tester1.isHired = true;
+                    numberOfEmployees += 1;
+                }
+            } else if (employeeChoice == 7 & numberOfEmployees < yourOffice.officeCapacity) {
+                if (Employee.tester2.isHired == true) {
+                    System.out.println("Wrong input!");
+                } else {
+                    avaliableEmployees.remove(Employee.tester2);
+                    hiredEmployees.add(Employee.tester2);
+                    Employee.tester2.isHired = true;
+                    numberOfEmployees += 1;
+                }
+            }  else if (employeeChoice == 0) { } else {
                 System.out.println("Wrong input or your office is to small!");
             }
         }
@@ -162,6 +178,26 @@ public class Company {
                 numberOfEmployees -= 1;
                 money -= 2000.0;
             }
+        } else if (employeeChoice == 6) {
+            if (Employee.tester1.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.tester1);
+                avaliableEmployees.remove(Employee.tester1);
+                Employee.tester1.isHired = false;
+                numberOfEmployees -= 1;
+                money -= 2000.0;
+            }
+        } else if (employeeChoice == 7) {
+            if (Employee.tester2.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.tester2);
+                avaliableEmployees.remove(Employee.tester2);
+                Employee.tester2.isHired = false;
+                numberOfEmployees -= 1;
+                money -= 2000.0;
+            }
         } else if (employeeChoice == 0) {
         }
         else {
@@ -189,14 +225,47 @@ public class Company {
             avaliableSubcontractors.remove(Subcontractor.bestStudent);
             workingSubcontractors.add(Subcontractor.bestStudent);
             Subcontractor.bestStudent.isWorking = true;
+            money -= Subcontractor.bestStudent.subcontractorCost;
+            System.out.println("On which project subcontractor should work?");
+            showStartedProject();
+            Integer projectChoice = Integer.parseInt(sc.nextLine());
+            if (projectChoice == 1 & startedProjects.contains(Project.project1)) {
+                Project.project1.thisProjectSubcontractors.add(Subcontractor.bestStudent);
+            } else if (projectChoice == 2 & startedProjects.contains(Project.project2)) {
+                Project.project2.thisProjectSubcontractors.add(Subcontractor.bestStudent);
+            } else if (projectChoice == 3 & startedProjects.contains(Project.project3)) {
+                Project.project3.thisProjectSubcontractors.add(Subcontractor.bestStudent);
+            }
         } else if (subcontractorChoice == 2 & avaliableSubcontractors.contains(Subcontractor.avgStudent) ) {
             avaliableSubcontractors.remove(Subcontractor.avgStudent);
             workingSubcontractors.add(Subcontractor.avgStudent);
             Subcontractor.avgStudent.isWorking = true;
+            money -= Subcontractor.avgStudent.subcontractorCost;
+            System.out.println("On which project subcontractor should work?");
+            showStartedProject();
+            Integer projectChoice = Integer.parseInt(sc.nextLine());
+            if (projectChoice == 1 & startedProjects.contains(Project.project1)) {
+                Project.project1.thisProjectSubcontractors.add(Subcontractor.avgStudent);
+            } else if (projectChoice == 2 & startedProjects.contains(Project.project2)) {
+                Project.project2.thisProjectSubcontractors.add(Subcontractor.avgStudent);
+            } else if (projectChoice == 3 & startedProjects.contains(Project.project3)) {
+                Project.project3.thisProjectSubcontractors.add(Subcontractor.avgStudent);
+            }
         } else if (subcontractorChoice == 3 & avaliableSubcontractors.contains(Subcontractor.worstStudent)) {
             avaliableSubcontractors.remove(Subcontractor.worstStudent);
             workingSubcontractors.add(Subcontractor.worstStudent);
             Subcontractor.worstStudent.isWorking = true;
+            money -= Subcontractor.worstStudent.subcontractorCost;
+            System.out.println("On which project subcontractor should work?");
+            showStartedProject();
+            Integer projectChoice = Integer.parseInt(sc.nextLine());
+            if (projectChoice == 1 & startedProjects.contains(Project.project1)) {
+                Project.project1.thisProjectSubcontractors.add(Subcontractor.worstStudent);
+            } else if (projectChoice == 2 & startedProjects.contains(Project.project2)) {
+                Project.project2.thisProjectSubcontractors.add(Subcontractor.worstStudent);
+            } else if (projectChoice == 3 & startedProjects.contains(Project.project3)) {
+                Project.project3.thisProjectSubcontractors.add(Subcontractor.worstStudent);
+            }
         } else if ( subcontractorChoice == 0) {
 
         } else {
@@ -413,14 +482,25 @@ public class Company {
             Integer employeeChoice = Integer.parseInt(sc.nextLine());
             if (employeeChoice == 1 & isBusy(Employee.coder1) == false & Employee.coder1.isHired == true) {
                 Project.project1.thisProjectWorkers.add(Employee.coder1);
+                Project.project1.numberOfCoders++;
             } else if (employeeChoice == 2 & isBusy(Employee.coder2) == false & Employee.coder2.isHired == true) {
                 Project.project1.thisProjectWorkers.add(Employee.coder2);
+                Project.project1.numberOfCoders++;
             } else if (employeeChoice == 3 & isBusy(Employee.coder3) == false & Employee.coder3.isHired == true) {
                 Project.project1.thisProjectWorkers.add(Employee.coder3);
+                Project.project1.numberOfCoders++;
             } else if (employeeChoice == 4 & isBusy(Employee.coder4) == false & Employee.coder4.isHired == true) {
                 Project.project1.thisProjectWorkers.add(Employee.coder4);
+                Project.project1.numberOfCoders++;
             } else if (employeeChoice == 5 & isBusy(Employee.coder5) == false & Employee.coder5.isHired == true) {
                 Project.project1.thisProjectWorkers.add(Employee.coder5);
+                Project.project1.numberOfCoders++;
+            } else if (employeeChoice == 6 & isBusy(Employee.tester1) == false & Employee.tester1.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.tester1);
+                Project.project1.numberOfTesters++;
+            } else if (employeeChoice == 7 & isBusy(Employee.tester2) == false & Employee.tester2.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.tester2);
+                Project.project1.numberOfTesters++;
             } else if (employeeChoice == 0) {
 
             } else {
@@ -432,16 +512,27 @@ public class Company {
             Integer employeeChoice = Integer.parseInt(sc.nextLine());
             if (employeeChoice == 1 & isBusy(Employee.coder1) == false & Employee.coder1.isHired == true) {
                 Project.project2.thisProjectWorkers.add(Employee.coder1);
+                Project.project2.numberOfCoders++;
             } else if (employeeChoice == 2 & isBusy(Employee.coder2) == false & Employee.coder2.isHired == true) {
                 Project.project2.thisProjectWorkers.add(Employee.coder2);
+                Project.project2.numberOfCoders++;
             } else if (employeeChoice == 3 & isBusy(Employee.coder3) == false & Employee.coder3.isHired == true) {
                 Project.project2.thisProjectWorkers.add(Employee.coder3);
+                Project.project2.numberOfCoders++;
             } else if (employeeChoice == 4 & isBusy(Employee.coder4) == false & Employee.coder4.isHired == true) {
-                Project.project1.thisProjectWorkers.add(Employee.coder4);
+                Project.project2.thisProjectWorkers.add(Employee.coder4);
+                Project.project2.numberOfCoders++;
             } else if (employeeChoice == 5 & isBusy(Employee.coder5) == false & Employee.coder5.isHired == true) {
-                Project.project1.thisProjectWorkers.add(Employee.coder5);
+                Project.project2.thisProjectWorkers.add(Employee.coder5);
+                Project.project2.numberOfCoders++;
             } else if (employeeChoice == 0) {
 
+            } else if (employeeChoice == 6 & isBusy(Employee.tester1) == false & Employee.tester1.isHired == true) {
+                Project.project1.thisProjectWorkers.add(Employee.tester1);
+                Project.project1.numberOfTesters++;
+            } else if (employeeChoice == 7 & isBusy(Employee.tester2) == false & Employee.tester2.isHired == true) {
+                Project.project2.thisProjectWorkers.add(Employee.tester2);
+                Project.project2.numberOfTesters++;
             } else {
                 System.out.println("Wrong input or employee is busy!");
             }
@@ -451,14 +542,25 @@ public class Company {
             Integer employeeChoice = Integer.parseInt(sc.nextLine());
             if (employeeChoice == 1 & isBusy(Employee.coder1) == false & Employee.coder1.isHired == true) {
                 Project.project3.thisProjectWorkers.add(Employee.coder1);
+                Project.project3.numberOfCoders++;
             } else if (employeeChoice == 2 & isBusy(Employee.coder2) == false & Employee.coder2.isHired == true) {
                 Project.project3.thisProjectWorkers.add(Employee.coder2);
+                Project.project3.numberOfCoders++;
             } else if (employeeChoice == 3 & isBusy(Employee.coder3) == false & Employee.coder3.isHired == true) {
                 Project.project3.thisProjectWorkers.add(Employee.coder3);
+                Project.project3.numberOfCoders++;
             } else if (employeeChoice == 4 & isBusy(Employee.coder4) == false & Employee.coder4.isHired == true) {
-                Project.project1.thisProjectWorkers.add(Employee.coder4);
+                Project.project3.thisProjectWorkers.add(Employee.coder4);
+                Project.project3.numberOfCoders++;
             } else if (employeeChoice == 5 & isBusy(Employee.coder5) == false & Employee.coder5.isHired == true) {
-                Project.project1.thisProjectWorkers.add(Employee.coder5);
+                Project.project3.thisProjectWorkers.add(Employee.coder5);
+                Project.project3.numberOfCoders++;
+            } else if (employeeChoice == 6 & isBusy(Employee.tester1) == false & Employee.tester1.isHired == true) {
+                Project.project3.thisProjectWorkers.add(Employee.tester1);
+                Project.project3.numberOfTesters++;
+            } else if (employeeChoice == 7 & isBusy(Employee.tester2) == false & Employee.tester2.isHired == true) {
+                Project.project3.thisProjectWorkers.add(Employee.tester2);
+                Project.project3.numberOfTesters++;
             } else if (employeeChoice == 0) {
 
             } else {
@@ -471,34 +573,94 @@ public class Company {
         for (Project project : startedProjects) {
             for (Employee employee : project.thisProjectWorkers) {
                 if (employee.frontEnd == true & project.frontEndDays > 0) {
-                    project.frontEndDays--;
+                    project.frontEndDays -= 1 * employee.workSpeed;
+                    ;
                 } else {
                     if (employee.backEnd == true & project.backEndDays > 0) {
-                        project.backEndDays--;
+                        project.backEndDays -= 1 * employee.workSpeed;
                     } else {
                         if (employee.dataBase == true & project.dataBaseDays > 0) {
-                            project.dataBaseDays--;
+                            project.dataBaseDays -= 1 * employee.workSpeed;
+                            ;
                         } else {
                             if (employee.mobile == true & project.mobileDays > 0) {
-                                project.mobileDays--;
+                                project.mobileDays -= 1 * employee.workSpeed;
+                                ;
                             } else {
                                 if (employee.wordpress == true & project.wordpressDays > 0) {
-                                    project.wordpressDays--;
+                                    project.wordpressDays -= 1 * employee.workSpeed;
+                                    ;
                                 } else {
                                     if (employee.prestashop == true & project.prestashopDays > 0) {
-                                        project.prestashopDays--;
+                                        project.prestashopDays -= 1 * employee.workSpeed;
+                                        ;
                                     }
                                 }
                             }
                         }
                     }
                 }
+
+                double r = Math.random();
+                if (r < employee.bugChance) {
+                    project.bugs++;
+                }
+                if (project.numberOfTesters >= project.numberOfCoders / 3) {
+                    project.bugs = 0;
+                }
             }
-            if (project.frontEndDays <= 0 & project.backEndDays <= 0 & project.dataBaseDays <= 0 & project.mobileDays <= 0 & project.wordpressDays <= 0 & project.prestashopDays <= 0) {
-                System.out.println("This project is ended!");
-                startedProjects.remove(project);
-                endedProjects.add(project);
-            }
+                for (Subcontractor subcontractor : project.thisProjectSubcontractors) {
+                    if (subcontractor.frontEnd == true & project.frontEndDays > 0) {
+                        project.frontEndDays--;
+                    } else {
+                        if (subcontractor.backEnd == true & project.backEndDays > 0) {
+                            project.backEndDays--;
+                        } else {
+                            if (subcontractor.dataBase == true & project.dataBaseDays > 0) {
+                                project.dataBaseDays--;
+                            } else {
+                                if (subcontractor.mobile == true & project.mobileDays > 0) {
+                                    project.mobileDays--;
+                                } else {
+                                    if (subcontractor.wordpress == true & project.wordpressDays > 0) {
+                                        project.wordpressDays--;
+                                    } else {
+                                        if (subcontractor.prestashop == true & project.prestashopDays > 0) {
+                                            project.prestashopDays--;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                if (project.frontEndDays <= 0 & project.backEndDays <= 0 & project.dataBaseDays <= 0 & project.mobileDays <= 0 & project.wordpressDays <= 0 & project.prestashopDays <= 0) {
+                    System.out.println("This project is ended!");
+                    startedProjects.remove(project);
+                    endedProjects.add(project);
+                    for  (Employee employee : project.thisProjectWorkers) {
+                        project.thisProjectWorkers.remove(employee);
+                    }
+                    for (Subcontractor subcontractor : project.thisProjectSubcontractors) {
+                        project.thisProjectSubcontractors.remove(subcontractor);
+                        avaliableSubcontractors.add(subcontractor);
+                    }
+                }
+
+        }
+    }
+
+    public void repairBugs(Integer whichProject) {
+        if (whichProject == 1 & endedProjects.contains(Project.project1) & Project.project1.bugs > 0) {
+            Project.project1.bugs--;
+        } else if (whichProject == 2 & endedProjects.contains(Project.project2) & Project.project2.bugs > 0) {
+            Project.project2.bugs--;
+        } else if (whichProject == 3 & endedProjects.contains(Project.project3) & Project.project3.bugs > 0) {
+            Project.project3.bugs--;
+        } else if (whichProject == 0) { } else {
+            System.out.println("Wrong input or no bugs!");
         }
     }
 }
