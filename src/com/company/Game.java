@@ -26,6 +26,7 @@ public class Game {
           if (startOfGame.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || startOfGame.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) { } else {
               company.workingTime();
           }
+            company.sellersSearchForClients();
             payoutTime();
             System.out.println("Current date: " + startOfGame.getTime()
                     + "\nYour funds: " + company.money + "$");
@@ -67,6 +68,8 @@ public class Game {
                 }
             break;
             case 2:
+                company.searchingClients();
+                nextTurn();
             break;
             case 3:
                 System.out.println("Which project you want to code?");

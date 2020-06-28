@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Company {
     public Integer numberOfEmployees = 0;
     public Integer numberOfProjects = 3;
+    public Integer searchDays = 0;
     public Double money = 30000.0;
     public Double businessExpense = 0.0;
     public ArrayList<Employee> avaliableEmployees = new ArrayList<>();
@@ -31,6 +32,10 @@ public class Company {
         avaliableEmployees.add(Employee.coder3);
         avaliableEmployees.add(Employee.coder4);
         avaliableEmployees.add(Employee.coder5);
+        avaliableEmployees.add(Employee.tester1);
+        avaliableEmployees.add(Employee.tester2);
+        avaliableEmployees.add(Employee.seller1);
+        avaliableEmployees.add(Employee.seller2);
     }
     public void addAvaliableProjects() {
         avaliableProjects.add(Project.project1);
@@ -113,7 +118,25 @@ public class Company {
                     Employee.tester2.isHired = true;
                     numberOfEmployees += 1;
                 }
-            }  else if (employeeChoice == 0) { } else {
+            } else if (employeeChoice == 8 & numberOfEmployees < yourOffice.officeCapacity) {
+                if (Employee.tester2.isHired == true) {
+                    System.out.println("Wrong input!");
+                } else {
+                    avaliableEmployees.remove(Employee.seller1);
+                    hiredEmployees.add(Employee.seller1);
+                    Employee.seller1.isHired = true;
+                    numberOfEmployees += 1;
+                }
+            } else if (employeeChoice == 9 & numberOfEmployees < yourOffice.officeCapacity) {
+                if (Employee.tester2.isHired == true) {
+                    System.out.println("Wrong input!");
+                } else {
+                    avaliableEmployees.remove(Employee.seller2);
+                    hiredEmployees.add(Employee.seller2);
+                    Employee.seller2.isHired = true;
+                    numberOfEmployees += 1;
+                }
+            } else if (employeeChoice == 0) { } else {
                 System.out.println("Wrong input or your office is to small!");
             }
         }
@@ -195,6 +218,26 @@ public class Company {
                 avaliableEmployees.add(Employee.tester2);
                 avaliableEmployees.remove(Employee.tester2);
                 Employee.tester2.isHired = false;
+                numberOfEmployees -= 1;
+                money -= 2000.0;
+            }
+        }  else if (employeeChoice == 8) {
+            if (Employee.seller1.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.seller1);
+                avaliableEmployees.remove(Employee.seller1);
+                Employee.seller1.isHired = false;
+                numberOfEmployees -= 1;
+                money -= 2000.0;
+            }
+        }  else if (employeeChoice == 9) {
+            if (Employee.seller2.isHired == false) {
+                System.out.println("Wrong input!");
+            } else {
+                avaliableEmployees.add(Employee.seller2);
+                avaliableEmployees.remove(Employee.seller2);
+                Employee.seller2.isHired = false;
                 numberOfEmployees -= 1;
                 money -= 2000.0;
             }
@@ -633,6 +676,10 @@ public class Company {
                             }
                         }
                     }
+                    double r = Math.random();
+                    if (r < subcontractor.buggedCodeChance) {
+                        project.bugs++;
+                    }
                 }
 
 
@@ -662,5 +709,27 @@ public class Company {
         } else if (whichProject == 0) { } else {
             System.out.println("Wrong input or no bugs!");
         }
+    }
+
+    public void searchingClients() {
+        searchDays ++;
+    }
+
+    public void addingAnotherProjects() {
+        if (searchDays == 5) {
+            avaliableProjects.add(Project.project4);
+        }
+        if (searchDays == 10) {
+            avaliableProjects.add(Project.project5);
+        }
+    }
+
+    public void sellersSearchForClients() {
+        for (Employee employee : hiredEmployees) {
+            if (employee.role == "seller") {
+                searchDays++;
+            }
+        }
+        addingAnotherProjects();
     }
 }

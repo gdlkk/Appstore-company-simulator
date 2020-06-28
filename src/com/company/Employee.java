@@ -10,7 +10,9 @@ public enum Employee {
     coder4("4. Andrew", "Golara", 3550.0, false, false, false, false, true, true, false, 1.6,0.1,"coder"),
     coder5("5. Ferdynand", "Kiepski", 6200.0, true, true, false, true, true, true, false, 2.3,0.15,"coder"),
     tester1("6. Jan", "Dąbrowski",5550.0,false,false,false,false,false, false, false, 3.0,3.0, "tester"),
-    tester2("7. Harambe'did", "Nothin'wrong", 6330.0,false,false,false,false,false,false,false, 4.0, 4.0, "tester");
+    tester2("7. Harambe'did", "Nothin'wrong", 6330.0,false,false,false,false,false,false,false, 4.0, 4.0, "tester"),
+    seller1("8. Jan", "Kowalski", 4000.0, false, false, false, false, false, false, false, 1.0, 0.0, "seller"),
+    seller2("9. Janusz", "Nowak", 3950.0, false, false, false, false, false, false, false, 1.0,0.0, "seller");
     public int numberOfEmployees = 0;
     public String firstName;
     public Double salary;

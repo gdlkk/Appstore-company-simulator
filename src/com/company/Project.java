@@ -7,7 +7,10 @@ import java.util.ArrayList;
 public enum Project {
     project1("1. easy", 0.0, 0.0, 0.0,0.0,4.0,0.0,10000.0, Client.ClientEasy, new ArrayList<>(), new ArrayList<>(), 0,0,0),
     project2("2. medium", 4.0,5.0,0.0,0.0,0.0,0.0, 35000.0, Client.ClientScmbg, new ArrayList<>(), new ArrayList<>(),0,0,0),
-    project3("3. hard", 13.0,18.0,11.0,0.0,0.0,0.0, 55000.0, Client.ClientNorm, new ArrayList<>(), new ArrayList<>(),0,0,0);
+    project3("3. hard", 13.0,18.0,11.0,0.0,0.0,0.0, 55000.0, Client.ClientNorm, new ArrayList<>(), new ArrayList<>(),0,0,0),
+    project4("4. medium", 8.0,10.0,0.0,0.0,0.0,0.0,40000.0, Client.ClientEasy, new ArrayList<>(), new ArrayList<>(), 0 ,0 ,0),
+    project5("5. medium", 8.0,9.0,6.0,0.0,0.0,0.0,45000.0, Client.ClientEasy, new ArrayList<>(), new ArrayList<>(), 0 ,0 ,0);
+
 
     public String difficulty;
     public Double frontEndDays;
